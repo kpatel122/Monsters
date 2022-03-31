@@ -10,6 +10,7 @@
 /[Ll]ogs/
 /[Mm]emoryCaptures/
 
+
 #folders
 /[Aa]ssets/TextMesh Pro/
 /[Aa]ssets/AmmoBox/
@@ -26,7 +27,12 @@
 /[Aa]ssets/Scenes/
 /[Aa]ssets/Settings/
 /[Aa]ssets/Scenes/
+/[Aa]ssets/IdiaSoftware/
+/[Aa]ssets/Music Atmosphere Horror (free)/
+/[Aa]ssets/Universe Sounds Free Pack/
 ProjectSettings/
+Packages/
+UserSettings/
 
 # Asset meta data should only be ignored when the corresponding asset is also ignored
 !/[Aa]ssets/**/*.meta
@@ -84,8 +90,12 @@ Assets/damage.png.meta
 Assets/Easy FPS.meta
 Assets/ExampleAssets.meta
 Assets/First_aid_kit.meta
+Assets/GameManager.cs
+Assets/GameManager.cs.meta
+Assets/IdiaSoftware.meta
 Assets/Materials.meta
 Assets/Monsters.meta
+Assets/Music Atmosphere Horror (free).meta
 Assets/Presets.meta
 Assets/ProgressBar.meta
 Assets/Readme.asset
@@ -96,6 +106,4 @@ Assets/Scripts.meta
 Assets/Settings.meta
 Assets/TextMesh Pro.meta
 Assets/TutorialInfo.meta
-Packages/manifest.json
-Packages/packages-lock.json
-UserSettings/EditorUserSettings.asset
+Assets/Universe Sounds Free Pack.meta

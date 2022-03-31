@@ -6,16 +6,28 @@ public class HealthPickup : MonoBehaviour
 {
     // Start is called before the first frame update
     Player playerScipt;  //reference to the player
-    public int spinSpeed =50; //speed of the spin
+    public int spinSpeed =50; //speed of the spin 
 
     public int healValue = 10; //how many health points to give to the player
-
     bool isActive = true; //wether this ammo pack has been picked up
+
+    AudioSource audioSource;
+
     
+    void playPickupSound()
+    {
+        if(audioSource.isPlaying == false)
+        {
+            audioSource.Play();
+        }
+    }
+
     void Start()
     {
          //get a reference to the player's controller script
         playerScipt = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        audioSource = GetComponent<AudioSource>();
+        
         
     }
 
@@ -52,6 +64,7 @@ public class HealthPickup : MonoBehaviour
             isActive = false;
 
             //TODO: play soundFX
+            playPickupSound();
 
             //wait a couple of seconds so the soundFX can complete, and then destroy the health pack
             StartCoroutine(SelfDestruct());

@@ -24,10 +24,22 @@ public class SimpleEnemyAI : MonoBehaviour
     WaypointsTraveler waypointsScript; //reference to waypoint script
     public float distanceForTracking; //inside this distance the enemy can begin to track
     public float distanceForAttacking; //inside this distance the enemy can attack
+    
+    public int distanceToHearPatrolSounds = 20; //how close the player has to be to hear the idle sounds
+    
     public float attackFrequency = 2; //time between attacks as long as enemy is inside distanceForAttacking
     public int damageForSwing = 10; //damage done to the player when monster attacks using arm swing
     
     public string[] fallTriggers;
+
+    public AudioClip[] patrolSounds;
+    public int patrolSoundRandomMaxValue = 100;
+    int numberOfPatrolSounds;
+
+    public AudioClip[] attackSounds;
+    int numberOfAttackSounds;
+
+    private AudioSource audioSource;
     
     private float timer = 0.0f; //internal counter
     private float timesinceLastAttack = 0; //time since enemy attacked player
@@ -54,6 +66,17 @@ public class SimpleEnemyAI : MonoBehaviour
         state = MONSTER_STATE.DEAD;
     }
 
+    void playPatrolSound()
+    {
+        audioSource.clip = patrolSounds[Random.Range(0,numberOfPatrolSounds)];
+        audioSource.Play();
+    }
+    void playAttackSound()
+    {
+        audioSource.clip = attackSounds[Random.Range(0,numberOfAttackSounds)];
+        audioSource.Play();
+    }
+
     void Initialise()
     {
         //set initial state
@@ -63,13 +86,19 @@ public class SimpleEnemyAI : MonoBehaviour
         waypointsScript = GetComponent<WaypointsTraveler>();
         enemyAnimator = GetComponent<Animator>();
         navMeshAgent = GetComponent<NavMeshAgent>();
+
+        //retrieve the audio player
+        audioSource = GetComponent<AudioSource>();
+
+        numberOfPatrolSounds = patrolSounds.Length;
+        numberOfAttackSounds = attackSounds.Length;
     }
 
     void UpdateState()
     {
         //get the distance to the player
         distanceToPlayer = Vector3.Distance(player.position, transform.position);
-        //Debug.Log("Distance to player is " + distanceToPlayer + " Monster state is " + state );
+        //Debug.Log("Distance to player is " + distanceToPlayer + " distanceToHearPatrolSounds " + distanceToHearPatrolSounds + " Monster state is " + state );
         
         if(state == MONSTER_STATE.PATROLLING)
         {
@@ -84,6 +113,18 @@ public class SimpleEnemyAI : MonoBehaviour
                 
                 //transition to run animation
                 enemyAnimator.SetTrigger("RunTrigger");
+            }
+            else if(distanceToPlayer < distanceToHearPatrolSounds)
+            {
+                if(audioSource.isPlaying == false)
+                {
+                    if(Random.Range(0,patrolSoundRandomMaxValue) == 1)
+                    {
+                        playPatrolSound();
+                    }
+                    
+                }
+                
             }
         }
         if(state == MONSTER_STATE.TRACKING)
@@ -108,6 +149,11 @@ public class SimpleEnemyAI : MonoBehaviour
 
             //call player hit
             player.GetComponent<Player>().Hit(damageForSwing);
+
+            if(audioSource.isPlaying == false)
+            {
+                playAttackSound();
+            }
 
             //check if we are still in range for an attack
             if(distanceToPlayer >= distanceForAttacking)
