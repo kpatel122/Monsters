@@ -15,6 +15,19 @@ public class Ammo : MonoBehaviour
 
     MeshRenderer [] childrenMR; //the child mesh renderers, so the mesh dissapears when picked up
 
+    AudioSource audioSource;
+
+
+
+    void playPickupSound()
+    {
+        //check if the sound is not playing
+        if(audioSource.isPlaying == false)
+        {
+            //play the soundFX
+            audioSource.Play();
+        }
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -24,6 +37,9 @@ public class Ammo : MonoBehaviour
         
         //get the child mesh renderers
         childrenMR = GetComponentsInChildren<MeshRenderer>();
+
+        //Get the audio source
+        audioSource = GetComponent<AudioSource>();
 
     }
 
@@ -60,7 +76,8 @@ public class Ammo : MonoBehaviour
                 //replenish the player's ammo for this ammo type
                 playerScript.AmmoBoost(ammoValue,weaponType);
 
-                //TODO: play sound effect
+                //play sound effect
+                playPickupSound();
 
                 //kill this object after a few seconds so the soundFX can complete
                 StartCoroutine(SelfDestruct());
