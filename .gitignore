@@ -10,6 +10,24 @@
 /[Ll]ogs/
 /[Mm]emoryCaptures/
 
+#folders
+/[Aa]ssets/TextMesh Pro/
+/[Aa]ssets/AmmoBox/
+/[Aa]ssets/AssetStoreOriginals/
+/[Aa]ssets/Easy FPS/
+/[Aa]ssets/ExampleAssets/
+/[Aa]ssets/First_aid_kit/
+/[Aa]ssets/ProgressBar/
+/[Aa]ssets/Monsters/
+/[Aa]ssets/RuneFire_Studios/
+/[Aa]ssets/TutorialInfo/
+/[Aa]ssets/Materials/
+/[Aa]ssets/Presets/
+/[Aa]ssets/Scenes/
+/[Aa]ssets/Settings/
+/[Aa]ssets/Scenes/
+ProjectSettings/
+
 # Asset meta data should only be ignored when the corresponding asset is also ignored
 !/[Aa]ssets/**/*.meta
 
@@ -58,3 +76,26 @@ sysinfo.txt
 # Crashlytics generated file
 crashlytics-build.properties
 
+.vscode/launch.json
+.vscode/settings.json
+Assets/AmmoBox.meta
+Assets/AssetStoreOriginals.meta
+Assets/damage.png.meta
+Assets/Easy FPS.meta
+Assets/ExampleAssets.meta
+Assets/First_aid_kit.meta
+Assets/Materials.meta
+Assets/Monsters.meta
+Assets/Presets.meta
+Assets/ProgressBar.meta
+Assets/Readme.asset
+Assets/Readme.asset.meta
+Assets/RuneFire_Studios.meta
+Assets/Scenes.meta
+Assets/Scripts.meta
+Assets/Settings.meta
+Assets/TextMesh Pro.meta
+Assets/TutorialInfo.meta
+Packages/manifest.json
+Packages/packages-lock.json
+UserSettings/EditorUserSettings.asset
