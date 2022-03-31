@@ -18,7 +18,7 @@ public class SimpleEnemyAI : MonoBehaviour
     };
 
     MONSTER_STATE state; //current state of the enemy
-    public Transform player; 
+    public Transform player; //treference to the player
 
     NavMeshAgent navMeshAgent; //reference to the navmesh agent
     WaypointsTraveler waypointsScript; //reference to waypoint script
@@ -30,16 +30,16 @@ public class SimpleEnemyAI : MonoBehaviour
     public float attackFrequency = 2; //time between attacks as long as enemy is inside distanceForAttacking
     public int damageForSwing = 10; //damage done to the player when monster attacks using arm swing
     
-    public string[] fallTriggers;
+    public string[] fallTriggers; //the different animation triggers for when the monster dies
 
-    public AudioClip[] patrolSounds;
-    public int patrolSoundRandomMaxValue = 100;
-    int numberOfPatrolSounds;
+    public AudioClip[] patrolSounds; //patrol sound bank
+    public int patrolSoundRandomMaxValue = 100; //the chances of playing the sound, if in range
+    int numberOfPatrolSounds; //the number of patrol sounds
 
-    public AudioClip[] attackSounds;
-    int numberOfAttackSounds;
+    public AudioClip[] attackSounds; //attack sound bank
+    int numberOfAttackSounds; //the number of attack sounds
 
-    private AudioSource audioSource;
+    private AudioSource audioSource; //the audio player
     
     private float timer = 0.0f; //internal counter
     private float timesinceLastAttack = 0; //time since enemy attacked player
@@ -66,14 +66,21 @@ public class SimpleEnemyAI : MonoBehaviour
         state = MONSTER_STATE.DEAD;
     }
 
+    
     void playPatrolSound()
     {
+        //get a random patrol sound
         audioSource.clip = patrolSounds[Random.Range(0,numberOfPatrolSounds)];
+        
+        //play the sound
         audioSource.Play();
     }
     void playAttackSound()
     {
+        //get a random attack sound
         audioSource.clip = attackSounds[Random.Range(0,numberOfAttackSounds)];
+        
+        //play the sound
         audioSource.Play();
     }
 
@@ -90,6 +97,7 @@ public class SimpleEnemyAI : MonoBehaviour
         //retrieve the audio player
         audioSource = GetComponent<AudioSource>();
 
+        //get the number of the patrol and attack sound banks
         numberOfPatrolSounds = patrolSounds.Length;
         numberOfAttackSounds = attackSounds.Length;
     }
@@ -114,12 +122,16 @@ public class SimpleEnemyAI : MonoBehaviour
                 //transition to run animation
                 enemyAnimator.SetTrigger("RunTrigger");
             }
+            //check if we are in range for the player to hear a patrol sound
             else if(distanceToPlayer < distanceToHearPatrolSounds)
             {
+                //check if no ther sounds are playing
                 if(audioSource.isPlaying == false)
                 {
+                    //randomise whether we hear the sound effect
                     if(Random.Range(0,patrolSoundRandomMaxValue) == 1)
                     {
+                        //play the patrol sound
                         playPatrolSound();
                     }
                     

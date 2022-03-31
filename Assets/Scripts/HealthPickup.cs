@@ -11,13 +11,15 @@ public class HealthPickup : MonoBehaviour
     public int healValue = 10; //how many health points to give to the player
     bool isActive = true; //wether this ammo pack has been picked up
 
-    AudioSource audioSource;
+    AudioSource audioSource;//the pickup audio clip
 
     
     void playPickupSound()
     {
+        //check if a sound is not already playing
         if(audioSource.isPlaying == false)
         {
+            //play the pickup sound
             audioSource.Play();
         }
     }
@@ -63,7 +65,7 @@ public class HealthPickup : MonoBehaviour
             //set the active flag to false
             isActive = false;
 
-            //TODO: play soundFX
+            //play soundFX
             playPickupSound();
 
             //wait a couple of seconds so the soundFX can complete, and then destroy the health pack

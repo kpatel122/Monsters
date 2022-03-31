@@ -15,7 +15,7 @@ public class Ammo : MonoBehaviour
 
     MeshRenderer [] childrenMR; //the child mesh renderers, so the mesh dissapears when picked up
 
-    AudioSource audioSource;
+    AudioSource audioSource; //audio player
 
 
 
