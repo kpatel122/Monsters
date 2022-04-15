@@ -5,6 +5,10 @@ using WaypointsFree;
 using UnityEngine.Assertions;
 using UnityEngine.AI;
 
+/**************************************************************************
+DEVELOPMENT BRANCH
+**************************************************************************/
+
 public class SimpleEnemyAI : MonoBehaviour
 {
     
@@ -46,6 +50,9 @@ public class SimpleEnemyAI : MonoBehaviour
     Animator enemyAnimator; //reference to the Animator component of the enemy
     private float distanceToPlayer; //distance to the player
 
+    /**************************************************************************
+    DEVELOPMENT BRANCH
+    **************************************************************************/ 
 
     public void Hit(int damageValue)
     {
