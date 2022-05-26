@@ -30,6 +30,8 @@
 /[Aa]ssets/IdiaSoftware/
 /[Aa]ssets/Music Atmosphere Horror (free)/
 /[Aa]ssets/Universe Sounds Free Pack/
+/[Aa]ssets/EffectTexturesAndPrefabs/
+/[Aa]ssets/52SpecialEffectPack/
 ProjectSettings/
 Packages/
 UserSettings/
@@ -107,3 +109,5 @@ Assets/Settings.meta
 Assets/TextMesh Pro.meta
 Assets/TutorialInfo.meta
 Assets/Universe Sounds Free Pack.meta
+Assets/52SpecialEffectPack.meta
+Assets/EffectTexturesAndPrefabs.meta

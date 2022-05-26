@@ -49,6 +49,8 @@ public class Player : MonoBehaviour
 
     WeaponAmmoData currentWeapon;  //holds the current weapon
 
+    float distanceToGround = 0; //used to check if the player is on the ground or jumping
+
     void weaponChange()
     {
         //validate the weapon index to roll back around the weapons array
@@ -96,6 +98,11 @@ public class Player : MonoBehaviour
 
         //set the weapon ui info
         UpdateWeaponInfoUI();
+
+        //get the dustance to the ground
+        distanceToGround = GetComponent<CapsuleCollider>().bounds.extents.y;
+
+        
     }
 
     public void AmmoBoost(int ammoValue, WeaponType type)
@@ -153,6 +160,18 @@ public class Player : MonoBehaviour
 
     }
 
+     
+    public bool TouchingGroundCheck()
+    {
+        //casst a ray for the collider to the ground, to check if the player is grounder
+        bool isOnGround = Physics.Raycast(transform.position, -Vector3.up, distanceToGround+0.1f);
+        
+        //send back the result
+        return isOnGround;
+        
+    }
+    
+
     public void Hit(int damageValue)
     {
         //set the alpha value of damage image to 1 i.e. completly visible
@@ -168,7 +187,6 @@ public class Player : MonoBehaviour
 
         //update the health bar value
         healthBar.BarValue = health;
-
     }
 
     void UpdateAmmo()
@@ -205,13 +223,12 @@ public class Player : MonoBehaviour
 
         //update the ammo info
         UpdateAmmo();
-
-
     }
 
     // Update is called once per frame
     void Update()
     {
+         
         //check if the player has been hit
         if (isHit)
         {
